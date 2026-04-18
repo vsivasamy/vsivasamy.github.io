@@ -69,7 +69,24 @@
     }
     .logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
     .logo span { color: var(--accent2); }
-    .nav-badge { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 5px 14px; border-radius: 100px; letter-spacing: 0.06em; }
+
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+
+    .nav-badge {
+      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted);
+      border: 1px solid var(--border); padding: 5px 14px;
+      border-radius: 100px; letter-spacing: 0.06em;
+    }
+
+    .nav-portfolio-btn {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--accent2); border: 1px solid rgba(0,217,163,0.35);
+      background: rgba(0,217,163,0.06);
+      padding: 6px 16px; border-radius: 100px;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .nav-portfolio-btn:hover { background: rgba(0,217,163,0.12); border-color: var(--accent2); }
 
     /* HERO */
     .hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 72px 24px 40px; }
@@ -149,14 +166,24 @@
     .expect-section { animation: fadeUp 0.7s 0.48s ease both; width: 100%; max-width: 620px; margin-bottom: 44px; }
     .expect-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; text-align: center; }
     .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
     .expect-card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 12px; padding: 16px 14px; text-align: center; transition: border-color 0.2s;
+      text-decoration: none; color: inherit; display: block;
     }
     .expect-card:hover { border-color: var(--accent); }
+    .expect-card.linked:hover { border-color: var(--accent2); }
+
     .expect-icon { font-size: 20px; margin-bottom: 8px; }
     .expect-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
     .expect-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    .expect-card.linked .expect-title::after {
+      content: ' →';
+      color: var(--accent2);
+      font-size: 11px;
+    }
 
     /* COUNTERS */
     .counter-strip { display: flex; justify-content: center; gap: 56px; padding: 28px 24px; animation: fadeUp 0.7s 0.5s ease both; }
@@ -206,7 +233,10 @@
 
     <nav>
       <div class="logo">vignesh<span>iam</span>.com</div>
-      <div class="nav-badge">coming soon</div>
+      <div class="nav-right">
+        <a href="/portfolio/" class="nav-portfolio-btn">Portfolio →</a>
+        <div class="nav-badge">coming soon</div>
+      </div>
     </nav>
 
     <section class="hero">
@@ -226,7 +256,7 @@
       <div class="profile-card">
         <div class="profile-avatar">V</div>
         <div>
-          <div class="profile-name">Vignesh</div>
+          <div class="profile-name">VigneshKumar Sivasamy</div>
           <div class="profile-exp"><span>4 years</span> hands-on in Customer &amp; Workforce Identity</div>
         </div>
       </div>
@@ -272,11 +302,11 @@
             <div class="expect-title">How-to Guides</div>
             <div class="expect-desc">Step-by-step walkthroughs from real scenarios</div>
           </div>
-          <div class="expect-card">
+          <a href="/portfolio/" class="expect-card linked">
             <div class="expect-icon">💼</div>
             <div class="expect-title">Portfolio</div>
-            <div class="expect-desc">Projects and work showcased over time</div>
-          </div>
+            <div class="expect-desc">Projects, certifications, and work experience</div>
+          </a>
         </div>
       </div>
 
@@ -306,9 +336,9 @@
     <footer>
       <div class="footer-left">© 2026 vigneshiam.com</div>
       <div class="footer-right">
-        <a href="https://dev.to" target="_blank">Dev.to</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-        <a href="mailto:hello@vigneshiam.com">Contact</a>
+        <a href="https://www.linkedin.com/in/s-vigneshkumar-" target="_blank">LinkedIn</a>
+        <a href="https://github.com/vsivasamy" target="_blank">GitHub</a>
+        <a href="mailto:vsivasamy@vigneshiam.com">Contact</a>
       </div>
     </footer>
 
