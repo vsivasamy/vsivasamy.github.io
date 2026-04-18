@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>vigneshiam.com — Identity & Access Management</title>
-  <meta name="description" content="Real-world IAM knowledge — Microsoft Entra ID, Auth0, and identity security from production experience."/>
+  <meta name="description" content="IAM knowledge, guides, and portfolio — Microsoft Entra ID, Auth0, ADFS, and AWS Cognito by Vignesh."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
@@ -12,17 +12,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0A0D12;
-      --surface:   #111520;
-      --border:    #1E2535;
-      --accent:    #3B7BF6;
-      --accent2:   #00D9A3;
-      --text:      #E8EDF5;
-      --muted:     #5A6478;
-      --mid:       #8A93A8;
+      --bg:      #0A0D12;
+      --surface: #111520;
+      --border:  #1E2535;
+      --accent:  #3B7BF6;
+      --accent2: #00D9A3;
+      --text:    #E8EDF5;
+      --muted:   #5A6478;
+      --mid:     #8A93A8;
     }
-
-    html { scroll-behavior: smooth; }
 
     body {
       background: var(--bg);
@@ -32,327 +30,171 @@
       overflow-x: hidden;
     }
 
-    /* ── GRID BACKGROUND ── */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image:
         linear-gradient(var(--border) 1px, transparent 1px),
         linear-gradient(90deg, var(--border) 1px, transparent 1px);
       background-size: 48px 48px;
-      opacity: 0.35;
+      opacity: 0.3;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── GLOW ORBS ── */
-    .orb {
-      position: fixed;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .orb { position: fixed; border-radius: 50%; filter: blur(130px); pointer-events: none; z-index: 0; }
     .orb-1 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(59,123,246,0.18) 0%, transparent 70%);
-      top: -100px; left: -100px;
-      animation: drift1 18s ease-in-out infinite alternate;
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(59,123,246,0.16) 0%, transparent 70%);
+      top: -120px; left: -120px;
+      animation: drift1 20s ease-in-out infinite alternate;
     }
     .orb-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,217,163,0.12) 0%, transparent 70%);
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(0,217,163,0.11) 0%, transparent 70%);
       bottom: -80px; right: -80px;
-      animation: drift2 22s ease-in-out infinite alternate;
+      animation: drift2 24s ease-in-out infinite alternate;
     }
-    @keyframes drift1 { from { transform: translate(0,0); } to { transform: translate(60px, 80px); } }
-    @keyframes drift2 { from { transform: translate(0,0); } to { transform: translate(-60px, -50px); } }
+    @keyframes drift1 { to { transform: translate(70px, 90px); } }
+    @keyframes drift2 { to { transform: translate(-60px, -50px); } }
 
-    /* ── WRAPPER ── */
-    .wrapper {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .wrapper { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 28px 48px;
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(8px);
       animation: fadeDown 0.6s ease both;
     }
-
-    .logo {
-      font-family: 'DM Mono', monospace;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
     .logo span { color: var(--accent2); }
+    .nav-badge { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 5px 14px; border-radius: 100px; letter-spacing: 0.06em; }
 
-    .nav-badge {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 5px 14px;
-      border-radius: 100px;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 24px 60px;
-    }
+    /* HERO */
+    .hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 72px 24px 40px; }
 
     .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--accent2);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid rgba(0,217,163,0.25);
-      background: rgba(0,217,163,0.06);
-      padding: 7px 16px;
-      border-radius: 100px;
-      margin-bottom: 40px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      border: 1px solid rgba(0,217,163,0.25); background: rgba(0,217,163,0.06);
+      padding: 7px 16px; border-radius: 100px; margin-bottom: 36px;
       animation: fadeUp 0.7s 0.1s ease both;
     }
-    .tag::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent2);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
+    .tag::before { content: ''; width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
 
     h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(44px, 7vw, 88px);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      max-width: 820px;
-      margin-bottom: 28px;
+      font-size: clamp(42px, 7vw, 86px);
+      font-weight: 400; line-height: 1.05;
+      letter-spacing: -0.02em; max-width: 820px;
+      margin-bottom: 24px;
       animation: fadeUp 0.7s 0.2s ease both;
     }
-    h1 em {
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(232,237,245,0.5);
-    }
-    h1 .accent-word {
-      color: var(--accent);
-    }
+    h1 em { font-style: italic; color: transparent; -webkit-text-stroke: 1px rgba(232,237,245,0.45); }
+    h1 .accent-word { color: var(--accent); }
 
     .subtitle {
-      font-size: 17px;
-      color: var(--mid);
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 56px;
+      font-size: 17px; color: var(--mid); max-width: 500px;
+      line-height: 1.75; margin-bottom: 44px;
       animation: fadeUp 0.7s 0.3s ease both;
     }
 
-    /* ── EMAIL FORM ── */
-    .notify-form {
-      display: flex;
-      gap: 0;
-      max-width: 420px;
-      width: 100%;
-      margin-bottom: 24px;
-      animation: fadeUp 0.7s 0.4s ease both;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow: hidden;
-      background: var(--surface);
-      transition: border-color 0.2s;
+    /* PROFILE CARD */
+    .profile-card {
+      display: flex; align-items: center; gap: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 28px;
+      margin-bottom: 44px; max-width: 500px; width: 100%;
+      animation: fadeUp 0.7s 0.35s ease both; text-align: left;
     }
-    .notify-form:focus-within {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(59,123,246,0.12);
+    .profile-avatar {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; flex-shrink: 0;
     }
-    .notify-form input {
-      flex: 1;
-      background: transparent;
-      border: none;
-      outline: none;
-      color: var(--text);
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 14px;
-      padding: 14px 18px;
-    }
-    .notify-form input::placeholder { color: var(--muted); }
-    .notify-form button {
-      background: var(--accent);
-      border: none;
-      color: #fff;
-      font-family: 'Instrument Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 14px 22px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.2s, transform 0.1s;
-      letter-spacing: 0.02em;
-    }
-    .notify-form button:hover { background: #2d6be0; }
-    .notify-form button:active { transform: scale(0.98); }
+    .profile-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+    .profile-exp { font-size: 12px; color: var(--mid); }
+    .profile-exp span { color: var(--accent); font-weight: 600; }
 
-    .form-note {
-      font-size: 12px;
-      color: var(--muted);
-      animation: fadeUp 0.7s 0.45s ease both;
-      margin-bottom: 72px;
-    }
+    /* SKILLS */
+    .skills-section { animation: fadeUp 0.7s 0.4s ease both; text-align: center; margin-bottom: 12px; }
+    .skills-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+    .skills-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 560px; }
 
-    /* ── TOPICS ── */
-    .topics {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      max-width: 600px;
-      animation: fadeUp 0.7s 0.5s ease both;
+    .pill-primary {
+      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent);
+      border: 1px solid rgba(59,123,246,0.4); background: rgba(59,123,246,0.08);
+      padding: 7px 16px; border-radius: 8px; letter-spacing: 0.04em; transition: all 0.2s;
     }
+    .pill-primary:hover { background: rgba(59,123,246,0.16); border-color: var(--accent); }
 
-    .topic {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 6px;
-      background: var(--surface);
-      letter-spacing: 0.04em;
-      transition: color 0.2s, border-color 0.2s;
+    .pill {
+      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted);
+      border: 1px solid var(--border); background: var(--surface);
+      padding: 6px 14px; border-radius: 8px; letter-spacing: 0.04em; transition: all 0.2s;
     }
-    .topic:hover {
-      color: var(--text);
-      border-color: var(--accent);
-    }
+    .pill:hover { color: var(--text); border-color: var(--accent); }
 
-    /* ── DIVIDER ── */
-    .divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 0 48px;
-    }
+    /* IDENTITY TYPE BADGES */
+    .identity-types { display: flex; gap: 12px; margin-top: 28px; margin-bottom: 44px; animation: fadeUp 0.7s 0.45s ease both; flex-wrap: wrap; justify-content: center; }
+    .id-badge { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--surface); padding: 10px 18px; border-radius: 10px; font-size: 13px; color: var(--mid); transition: all 0.2s; }
+    .id-badge:hover { border-color: var(--accent2); color: var(--text); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
 
-    /* ── FOOTER ── */
-    footer {
-      padding: 28px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      animation: fadeUp 0.7s 0.6s ease both;
+    /* WHAT TO EXPECT CARDS */
+    .expect-section { animation: fadeUp 0.7s 0.48s ease both; width: 100%; max-width: 620px; margin-bottom: 44px; }
+    .expect-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; text-align: center; }
+    .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .expect-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 16px 14px; text-align: center; transition: border-color 0.2s;
     }
-    .footer-left {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.06em;
+    .expect-card:hover { border-color: var(--accent); }
+    .expect-icon { font-size: 20px; margin-bottom: 8px; }
+    .expect-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .expect-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+    /* COUNTERS */
+    .counter-strip { display: flex; justify-content: center; gap: 56px; padding: 28px 24px; animation: fadeUp 0.7s 0.5s ease both; }
+    .counter-item { text-align: center; }
+    .counter-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .counter-num span { color: var(--accent2); }
+    .counter-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* COMING SOON */
+    .coming-soon {
+      background: linear-gradient(135deg, rgba(59,123,246,0.07), rgba(0,217,163,0.05));
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 16px 32px; margin: 0 auto 44px;
+      max-width: 500px; width: calc(100% - 48px);
+      text-align: center; animation: fadeUp 0.7s 0.52s ease both;
     }
-    .footer-right {
-      display: flex;
-      gap: 24px;
-    }
-    .footer-right a {
-      font-size: 12px;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      letter-spacing: 0.03em;
-    }
+    .coming-soon p { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--mid); letter-spacing: 0.05em; }
+    .coming-soon p strong { color: var(--accent2); }
+
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 48px; }
+
+    footer { padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; animation: fadeUp 0.7s 0.6s ease both; }
+    .footer-left { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+    .footer-right { display: flex; gap: 24px; }
+    .footer-right a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-right a:hover { color: var(--text); }
 
-    /* ── COUNTER STRIP ── */
-    .counter-strip {
-      display: flex;
-      justify-content: center;
-      gap: 56px;
-      padding: 40px 24px;
-      animation: fadeUp 0.7s 0.55s ease both;
-    }
-    .counter-item {
-      text-align: center;
-    }
-    .counter-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 36px;
-      color: var(--text);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .counter-num span { color: var(--accent2); }
-    .counter-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
 
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── SUCCESS STATE ── */
-    .success-msg {
-      display: none;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--accent2);
-      text-align: center;
-      margin-bottom: 24px;
-      border: 1px solid rgba(0,217,163,0.25);
-      background: rgba(0,217,163,0.06);
-      padding: 12px 24px;
-      border-radius: 8px;
-      max-width: 420px;
-      width: 100%;
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       nav { padding: 20px 24px; }
       footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
-      .divider { margin: 0 24px; }
-      .counter-strip { gap: 32px; }
+      hr.divider { margin: 0 24px; }
+      .counter-strip { gap: 28px; }
       .counter-num { font-size: 28px; }
-      .notify-form { flex-direction: column; border-radius: 10px; }
-      .notify-form button { border-radius: 0 0 10px 10px; }
+      .profile-card { flex-direction: column; text-align: center; }
+      .expect-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -362,61 +204,92 @@
 
   <div class="wrapper">
 
-    <!-- NAV -->
     <nav>
       <div class="logo">vignesh<span>iam</span>.com</div>
-      <div class="nav-badge">launching soon</div>
+      <div class="nav-badge">coming soon</div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero">
 
       <div class="tag">Identity &amp; Access Management</div>
 
       <h1>
-        Real fixes for<br/>
-        <em>real</em> <span class="accent-word">IAM</span> problems
+        Learn. Build.<br/>
+        <em>Master</em> <span class="accent-word">IAM.</span>
       </h1>
 
       <p class="subtitle">
-        Production-tested solutions for Microsoft Entra ID, Auth0, and identity security —
-        written by an engineer who hit these issues in the wild.
+        A personal space to share IAM knowledge, step-by-step guides, and
+        real-world experience — covering identity from all angles.
       </p>
 
-      <div class="notify-form" id="notifyForm">
-        <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email"/>
-        <button onclick="handleNotify()">Notify me</button>
+      <div class="profile-card">
+        <div class="profile-avatar">V</div>
+        <div>
+          <div class="profile-name">Vignesh</div>
+          <div class="profile-exp"><span>4 years</span> hands-on in Customer &amp; Workforce Identity</div>
+        </div>
       </div>
 
-      <div class="success-msg" id="successMsg">
-        ✓ &nbsp;You're on the list — I'll email when the first post drops.
+      <div class="skills-section">
+        <div class="skills-label">Primary Skills</div>
+        <div class="skills-row">
+          <span class="pill-primary">ADFS</span>
+          <span class="pill-primary">Auth0</span>
+          <span class="pill-primary">Microsoft Entra ID</span>
+          <span class="pill-primary">AWS Cognito</span>
+        </div>
       </div>
 
-      <p class="form-note">No spam. One email when the site goes live.</p>
+      <div class="skills-section" style="margin-top: 18px;">
+        <div class="skills-label">Also Covers</div>
+        <div class="skills-row">
+          <span class="pill">Security Groups</span>
+          <span class="pill">LDAP / AD</span>
+          <span class="pill">Exchange Online</span>
+          <span class="pill">PowerShell</span>
+          <span class="pill">Identity Governance</span>
+          <span class="pill">Zero Trust</span>
+          <span class="pill">SAML / OAuth / OIDC</span>
+        </div>
+      </div>
 
-      <div class="topics">
-        <span class="topic">Microsoft Entra ID</span>
-        <span class="topic">Auth0</span>
-        <span class="topic">Security Groups</span>
-        <span class="topic">LDAP / AD</span>
-        <span class="topic">Exchange Online</span>
-        <span class="topic">PowerShell</span>
-        <span class="topic">Identity Governance</span>
-        <span class="topic">Microsoft 365</span>
-        <span class="topic">Zero Trust</span>
+      <div class="identity-types">
+        <div class="id-badge"><span class="dot"></span>Customer Identity (CIAM)</div>
+        <div class="id-badge"><span class="dot" style="background:var(--accent);"></span>Workforce Identity (IAM)</div>
+      </div>
+
+      <div class="expect-section">
+        <div class="expect-label">What to Expect</div>
+        <div class="expect-grid">
+          <div class="expect-card">
+            <div class="expect-icon">📖</div>
+            <div class="expect-title">Knowledge Base</div>
+            <div class="expect-desc">Concepts and deep dives explained clearly</div>
+          </div>
+          <div class="expect-card">
+            <div class="expect-icon">🔧</div>
+            <div class="expect-title">How-to Guides</div>
+            <div class="expect-desc">Step-by-step walkthroughs from real scenarios</div>
+          </div>
+          <div class="expect-card">
+            <div class="expect-icon">💼</div>
+            <div class="expect-title">Portfolio</div>
+            <div class="expect-desc">Projects and work showcased over time</div>
+          </div>
+        </div>
       </div>
 
     </section>
 
-    <!-- COUNTER STRIP -->
     <div class="counter-strip">
       <div class="counter-item">
-        <div class="counter-num">1<span>+</span></div>
-        <div class="counter-label">Post Ready</div>
+        <div class="counter-num">4<span>yrs</span></div>
+        <div class="counter-label">Experience</div>
       </div>
       <div class="counter-item">
-        <div class="counter-num">4<span>yrs</span></div>
-        <div class="counter-label">Production Exp</div>
+        <div class="counter-num">4<span>+</span></div>
+        <div class="counter-label">IAM Platforms</div>
       </div>
       <div class="counter-item">
         <div class="counter-num">0<span>$</span></div>
@@ -424,9 +297,12 @@
       </div>
     </div>
 
+    <div class="coming-soon">
+      <p>🚀 &nbsp;Content dropping soon — <strong>Knowledge, guides, and more</strong></p>
+    </div>
+
     <hr class="divider"/>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-left">© 2026 vigneshiam.com</div>
       <div class="footer-right">
@@ -437,30 +313,5 @@
     </footer>
 
   </div>
-
-  <script>
-    function handleNotify() {
-      const input = document.getElementById('emailInput');
-      const form  = document.getElementById('notifyForm');
-      const msg   = document.getElementById('successMsg');
-      const email = input.value.trim();
-      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!valid) {
-        form.style.borderColor = '#F87171';
-        form.style.boxShadow = '0 0 0 3px rgba(248,113,113,0.12)';
-        input.focus();
-        setTimeout(() => {
-          form.style.borderColor = '';
-          form.style.boxShadow = '';
-        }, 1800);
-        return;
-      }
-      form.style.display = 'none';
-      msg.style.display  = 'block';
-    }
-    document.getElementById('emailInput').addEventListener('keydown', e => {
-      if (e.key === 'Enter') handleNotify();
-    });
-  </script>
 </body>
 </html>
