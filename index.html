@@ -132,6 +132,7 @@
       background: linear-gradient(135deg, var(--accent), var(--accent2));
       display: flex; align-items: center; justify-content: center;
       font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; flex-shrink: 0;
+      overflow: hidden;
     }
     .profile-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
     .profile-exp { font-size: 12px; color: var(--mid); }
@@ -214,14 +215,32 @@
     @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
 
-    @media (max-width: 640px) {
-      nav { padding: 20px 24px; }
-      footer { padding: 24px; flex-direction: column; gap: 16px; text-align: center; }
-      hr.divider { margin: 0 24px; }
-      .counter-strip { gap: 28px; }
-      .counter-num { font-size: 28px; }
-      .profile-card { flex-direction: column; text-align: center; }
-      .expect-grid { grid-template-columns: 1fr; }
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .nav-right { gap: 10px; }
+      .nav-portfolio-btn { padding: 5px 12px; font-size: 10px; }
+      .nav-badge { display: none; }
+      h1 { font-size: clamp(32px, 10vw, 60px); }
+      .hero { padding: 56px 16px 32px; }
+      .subtitle { font-size: 15px; }
+      .profile-card { flex-direction: column; text-align: center; padding: 16px; }
+      .skills-row { justify-content: center; }
+      .identity-types { flex-direction: column; align-items: center; }
+      .expect-grid { grid-template-columns: 1fr; gap: 8px; }
+      .counter-strip { gap: 24px; flex-wrap: wrap; padding: 20px 16px; }
+      .counter-num { font-size: 26px; }
+      footer { padding: 20px 16px; flex-direction: column; gap: 12px; text-align: center; }
+      hr.divider { margin: 0 16px; }
+      .coming-soon { width: calc(100% - 32px); padding: 14px 20px; }
+    }
+
+    @media (max-width: 400px) {
+      nav { padding: 12px 16px; }
+      h1 { font-size: 28px; }
+      .tag { font-size: 10px; padding: 6px 12px; }
+      .pill, .pill-primary { font-size: 10px; padding: 5px 10px; }
+      .counter-strip { gap: 16px; }
+      .footer-right { flex-wrap: wrap; justify-content: center; gap: 16px; }
     }
   </style>
 </head>
@@ -234,7 +253,7 @@
     <nav>
       <div class="logo">vignesh<span>iam</span>.com</div>
       <div class="nav-right">
-        <a href="/portfolio/" class="nav-portfolio-btn">Portfolio →</a>
+        <a href="/portfolio/" class="nav-portfolio-btn">My Story →</a>
         <div class="nav-badge">coming soon</div>
       </div>
     </nav>
@@ -254,7 +273,7 @@
       </p>
 
       <div class="profile-card">
-        <div class="profile-avatar">V</div>
+        <img src="/images/profile.png" alt="VigneshKumar Sivasamy" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>
         <div>
           <div class="profile-name">VigneshKumar Sivasamy</div>
           <div class="profile-exp"><span>4 years</span> hands-on in Customer &amp; Workforce Identity</div>
@@ -304,7 +323,7 @@
           </div>
           <a href="/portfolio/" class="expect-card linked">
             <div class="expect-icon">💼</div>
-            <div class="expect-title">Portfolio</div>
+            <div class="expect-title">My Story</div>
             <div class="expect-desc">Projects, certifications, and work experience</div>
           </a>
         </div>

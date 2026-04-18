@@ -556,6 +556,87 @@
       position: relative;
       z-index: 1;
     }
+
+    /* ── Mobile & Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+      }
+      .hero-photo-col {
+        order: -1;
+      }
+      .hero-bio {
+        margin: 0 auto 2.5rem;
+      }
+      .hero-cta {
+        justify-content: center;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      nav {
+        padding: 1rem 1.2rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+      }
+      .nav-links a {
+        font-size: 0.65rem;
+      }
+      section {
+        padding: 0 1.2rem;
+      }
+      .section-header {
+        padding-top: 4rem;
+      }
+      .hero-name {
+        font-size: 2rem;
+      }
+      .hero-photo {
+        width: 200px;
+        height: 200px;
+      }
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+      .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cert-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.8rem;
+      }
+      .contact-row {
+        flex-direction: column;
+      }
+      .contact-link {
+        width: 100%;
+        justify-content: center;
+      }
+      footer {
+        padding: 1.5rem 1.2rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-name {
+        font-size: 1.7rem;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -578,7 +659,7 @@
 <section id="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge fade-in">IAM Engineer · Chennai, India</div>
+      <div class="hero-badge fade-in">Jr. Software Engineer · Coimbatore, India</div>
       <h1 class="hero-name fade-in delay-1">
         VigneshKumar<br><span>Sivasamy</span>
       </h1>
