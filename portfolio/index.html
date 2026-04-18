@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>VigneshKumar Sivasamy — IAM Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:       #080c12;
@@ -82,6 +82,17 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
+    .nav-home-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-home-link:hover { color: var(--accent); }
 
     .nav-links {
       display: flex;
@@ -225,13 +236,13 @@
 
     /* ── Profile Photo ── */
     .photo-name-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.9rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--text);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       text-align: center;
-      opacity: 0.75;
+      opacity: 0.9;
     }
 
     .hero-photo-col {
@@ -321,9 +332,19 @@
       font-size: 1rem;
       color: rgba(228,234,244,0.75);
       line-height: 1.85;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      min-width: 0;
+      text-align: left;
     }
 
     .about-text p + p { margin-top: 1rem; }
+
+    #about .section-title,
+    #about .section-tag,
+    #about .about-text {
+      text-align: left;
+    }
 
     .about-stats {
       display: grid;
@@ -577,6 +598,7 @@
         grid-template-columns: 1fr;
         gap: 2rem;
       }
+      #about { text-align: left; }
       .skills-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -629,12 +651,25 @@
       }
     }
 
+    @media (max-width: 480px) {
+      .nav-links {
+        display: none;
+      }
+      nav {
+        padding: 0.9rem 1rem;
+      }
+    }
+
     @media (max-width: 400px) {
       .hero-name {
         font-size: 1.7rem;
       }
-      .nav-links {
-        display: none;
+      .hero-bio {
+        font-size: 0.92rem;
+        padding: 0 0.5rem;
+      }
+      .about-text {
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -646,11 +681,10 @@
 
 <!-- NAV -->
 <nav>
-  <div style="display:flex;align-items:center;gap:1.5rem;"><a href="/" style="font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--muted);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">← Home</a><div class="nav-logo">VK.IAM</div></div>
+  <a href="/" class="nav-home-link">← Home</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -668,7 +702,7 @@
         Specialising in Auth0, ADFS, and Microsoft Entra ID — implementing SSO across enterprise applications and managing identity infrastructure for both workforce and customer identities. Cloud-experienced across AWS and Azure, with infrastructure automation via Terraform and GitHub Actions.
       </p>
       <div class="hero-cta fade-in delay-4">
-        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="#skills" class="btn-primary">View Skills →</a>
         <a href="#contact" class="btn-ghost">Get in Touch</a>
       </div>
     </div>
