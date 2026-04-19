@@ -3,11 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>vigneshiam.com — Identity & Access Management</title>
-  <meta name="description" content="IAM knowledge, guides, and portfolio — Microsoft Entra ID, Auth0, ADFS, and AWS Cognito by Vignesh."/>
+
+  <!-- Primary SEO -->
+  <title>VigneshKumar Sivasamy — IAM Engineer, Projects & Guides</title>
+  <meta name="description" content="Personal site of VigneshKumar Sivasamy — IAM Engineer with 4 years in Identity & Access Management. Step-by-step guides on GitHub Pages, AWS, Auth0, Linux, and more."/>
+  <meta name="keywords" content="VigneshKumar Sivasamy, IAM Engineer, Identity Access Management, Auth0, AWS, GitHub Pages, Linux, Entra ID, ADFS, Tech Guides"/>
+  <meta name="author" content="VigneshKumar Sivasamy"/>
+  <link rel="canonical" href="https://vigneshiam.com/"/>
+
+  <!-- Open Graph (WhatsApp, LinkedIn, Facebook previews) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://vigneshiam.com/"/>
+  <meta property="og:title" content="VigneshKumar Sivasamy — IAM Engineer, Projects & Guides"/>
+  <meta property="og:description" content="Step-by-step guides and projects on GitHub Pages, AWS, Auth0, Linux, and Identity Management — by VigneshKumar Sivasamy."/>
+  <meta property="og:image" content="https://vigneshiam.com/images/profile.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="VigneshKumar Sivasamy — IAM Engineer"/>
+  <meta name="twitter:description" content="Projects and guides on GitHub Pages, AWS, Auth0, Linux, and IAM."/>
+  <meta name="twitter:image" content="https://vigneshiam.com/images/profile.png"/>
+
+  <!-- Structured Data: Person -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "VigneshKumar Sivasamy",
+    "url": "https://vigneshiam.com",
+    "jobTitle": "IAM Engineer",
+    "description": "Identity & Access Management engineer with 4 years of hands-on experience in Auth0, Microsoft Entra ID, ADFS, and AWS Cognito.",
+    "sameAs": [
+      "https://www.linkedin.com/in/s-vigneshkumar-",
+      "https://github.com/vsivasamy"
+    ],
+    "email": "vsivasamy@vigneshiam.com"
+  }
+  </script>
+
+  <!-- Structured Data: Blog -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "vigneshiam.com",
+    "url": "https://vigneshiam.com",
+    "description": "Projects, step-by-step guides, and notes on IAM, cloud, Linux, and web — by VigneshKumar Sivasamy.",
+    "author": {
+      "@type": "Person",
+      "name": "VigneshKumar Sivasamy"
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,12 +74,15 @@
       --mid:     #8A93A8;
     }
 
+    html { scroll-behavior: smooth; }
+
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Instrument Sans', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
     body::before {
@@ -58,189 +113,239 @@
     @keyframes drift1 { to { transform: translate(70px, 90px); } }
     @keyframes drift2 { to { transform: translate(-60px, -50px); } }
 
-    .wrapper { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 860px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 48px;
+      padding: 28px 0;
       border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
       animation: fadeDown 0.6s ease both;
     }
-    .logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; }
-    .logo span { color: var(--accent2); }
-
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-
-    .nav-badge {
-      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted);
-      border: 1px solid var(--border); padding: 5px 14px;
-      border-radius: 100px; letter-spacing: 0.06em;
+    .logo {
+      font-family: 'DM Mono', monospace; font-size: 13px;
+      font-weight: 500; color: var(--accent);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none;
     }
-
+    .logo span { color: var(--accent2); }
     .nav-portfolio-btn {
       font-family: 'DM Mono', monospace; font-size: 11px;
       color: var(--accent2); border: 1px solid rgba(0,217,163,0.35);
       background: rgba(0,217,163,0.06);
-      padding: 6px 16px; border-radius: 100px;
+      padding: 8px 18px; border-radius: 100px;
       letter-spacing: 0.06em; text-decoration: none;
       transition: background 0.2s, border-color 0.2s;
+      white-space: nowrap;
+      /* larger tap target on mobile */
+      min-height: 40px; display: flex; align-items: center;
     }
     .nav-portfolio-btn:hover { background: rgba(0,217,163,0.12); border-color: var(--accent2); }
 
-    /* HERO */
-    .hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 72px 24px 40px; }
-
-    .tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2);
-      letter-spacing: 0.1em; text-transform: uppercase;
-      border: 1px solid rgba(0,217,163,0.25); background: rgba(0,217,163,0.06);
-      padding: 7px 16px; border-radius: 100px; margin-bottom: 36px;
+    /* ── PAGE HEADER ── */
+    .page-header {
+      margin-bottom: 48px;
       animation: fadeUp 0.7s 0.1s ease both;
     }
-    .tag::before { content: ''; width: 6px; height: 6px; background: var(--accent2); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.7); } }
-
-    h1 {
+    .page-header h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(42px, 7vw, 86px);
-      font-weight: 400; line-height: 1.05;
-      letter-spacing: -0.02em; max-width: 820px;
-      margin-bottom: 24px;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .page-header h1 em {
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232,237,245,0.4);
+    }
+    .page-header p {
+      font-size: 16px; color: var(--mid);
+      max-width: 500px; line-height: 1.75;
+    }
+
+    /* ── FILTER TABS ── */
+    .filter-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.15s ease both;
+      /* horizontal scroll on very small screens */
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 4px;
+    }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-tab {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 8px 16px; border-radius: 100px;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); cursor: pointer;
+      transition: all 0.2s; text-decoration: none;
+      white-space: nowrap; flex-shrink: 0;
+      min-height: 36px; display: flex; align-items: center;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      color: var(--accent2);
+      border-color: rgba(0,217,163,0.4);
+      background: rgba(0,217,163,0.06);
+    }
+
+    /* ── FEATURED CARD ── */
+    .featured-card {
+      display: block; text-decoration: none; color: inherit;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 36px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s, background 0.2s;
       animation: fadeUp 0.7s 0.2s ease both;
     }
-    h1 em { font-style: italic; color: transparent; -webkit-text-stroke: 1px rgba(232,237,245,0.45); }
-    h1 .accent-word { color: var(--accent); }
+    .featured-card:hover { border-color: var(--accent2); background: rgba(0,217,163,0.03); }
 
-    .subtitle {
-      font-size: 17px; color: var(--mid); max-width: 500px;
-      line-height: 1.75; margin-bottom: 44px;
-      animation: fadeUp 0.7s 0.3s ease both;
+    /* ── CARD GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+    .post-card {
+      display: block; text-decoration: none; color: inherit;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 26px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .post-card:hover { border-color: var(--accent2); background: rgba(0,217,163,0.03); }
+
+    /* ── SHARED CARD ELEMENTS ── */
+    .card-top {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; flex-wrap: wrap;
+    }
+    .featured-card .card-top { margin-bottom: 20px; }
+
+    .card-category {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 100px;
+      flex-shrink: 0;
+    }
+    .cat-web   { color: var(--accent2); border: 1px solid rgba(0,217,163,0.3);  background: rgba(0,217,163,0.07); }
+    .cat-iam   { color: var(--accent);  border: 1px solid rgba(59,123,246,0.3); background: rgba(59,123,246,0.07); }
+    .cat-cloud { color: #f59e0b;        border: 1px solid rgba(245,158,11,0.3); background: rgba(245,158,11,0.07); }
+    .cat-linux { color: #e879f9;        border: 1px solid rgba(232,121,249,0.3);background: rgba(232,121,249,0.07); }
+
+    .card-date {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      color: var(--muted); letter-spacing: 0.04em;
+      margin-left: auto;
+    }
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400; line-height: 1.25;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .featured-card .card-title { font-size: clamp(20px, 3vw, 26px); margin-bottom: 12px; }
+    .post-card    .card-title  { font-size: clamp(16px, 2.5vw, 18px); }
+
+    .card-desc {
+      font-size: 13px; color: var(--mid); line-height: 1.7;
+    }
+    .featured-card .card-desc { font-size: 14px; max-width: 580px; margin-bottom: 20px; }
+
+    .card-read-more {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--accent2); letter-spacing: 0.04em;
+      display: inline-block; margin-top: 4px;
     }
 
-    /* PROFILE CARD */
+    /* ── PROFILE CARD ── */
     .profile-card {
       display: flex; align-items: center; gap: 20px;
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 16px; padding: 20px 28px;
-      margin-bottom: 44px; max-width: 500px; width: 100%;
-      animation: fadeUp 0.7s 0.35s ease both; text-align: left;
-    }
-    .profile-avatar {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'DM Serif Display', serif; font-size: 22px; color: #fff; flex-shrink: 0;
-      overflow: hidden;
+      margin-bottom: 40px;
+      animation: fadeUp 0.7s 0.3s ease both;
     }
     .profile-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
-    .profile-exp { font-size: 12px; color: var(--mid); }
+    .profile-exp  { font-size: 12px; color: var(--mid); line-height: 1.6; }
     .profile-exp span { color: var(--accent); font-weight: 600; }
-
-    /* SKILLS */
-    .skills-section { animation: fadeUp 0.7s 0.4s ease both; text-align: center; margin-bottom: 12px; }
-    .skills-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-    .skills-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 560px; }
-
-    .pill-primary {
-      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent);
-      border: 1px solid rgba(59,123,246,0.4); background: rgba(59,123,246,0.08);
-      padding: 7px 16px; border-radius: 8px; letter-spacing: 0.04em; transition: all 0.2s;
+    .profile-links { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
+    .profile-link {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--muted); text-decoration: none;
+      border: 1px solid var(--border); padding: 6px 14px;
+      border-radius: 100px; transition: all 0.2s;
+      min-height: 34px; display: flex; align-items: center;
     }
-    .pill-primary:hover { background: rgba(59,123,246,0.16); border-color: var(--accent); }
+    .profile-link:hover { color: var(--text); border-color: var(--accent); }
 
-    .pill {
-      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted);
-      border: 1px solid var(--border); background: var(--surface);
-      padding: 6px 14px; border-radius: 8px; letter-spacing: 0.04em; transition: all 0.2s;
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--border); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      animation: fadeUp 0.7s 0.35s ease both;
     }
-    .pill:hover { color: var(--text); border-color: var(--accent); }
-
-    /* IDENTITY TYPE BADGES */
-    .identity-types { display: flex; gap: 12px; margin-top: 28px; margin-bottom: 44px; animation: fadeUp 0.7s 0.45s ease both; flex-wrap: wrap; justify-content: center; }
-    .id-badge { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--surface); padding: 10px 18px; border-radius: 10px; font-size: 13px; color: var(--mid); transition: all 0.2s; }
-    .id-badge:hover { border-color: var(--accent2); color: var(--text); }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
-
-    /* WHAT TO EXPECT CARDS */
-    .expect-section { animation: fadeUp 0.7s 0.48s ease both; width: 100%; max-width: 620px; margin-bottom: 44px; }
-    .expect-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; text-align: center; }
-    .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-
-    .expect-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 16px 14px; text-align: center; transition: border-color 0.2s;
-      text-decoration: none; color: inherit; display: block;
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a {
+      font-size: 12px; color: var(--muted); text-decoration: none;
+      transition: color 0.2s; min-height: 32px; display: flex; align-items: center;
     }
-    .expect-card:hover { border-color: var(--accent); }
-    .expect-card.linked:hover { border-color: var(--accent2); }
+    .footer-links a:hover { color: var(--text); }
 
-    .expect-icon { font-size: 20px; margin-bottom: 8px; }
-    .expect-title { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .expect-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
-
-    .expect-card.linked .expect-title::after {
-      content: ' →';
-      color: var(--accent2);
-      font-size: 11px;
-    }
-
-    /* COUNTERS */
-    .counter-strip { display: flex; justify-content: center; gap: 56px; padding: 28px 24px; animation: fadeUp 0.7s 0.5s ease both; }
-    .counter-item { text-align: center; }
-    .counter-num { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--text); line-height: 1; margin-bottom: 6px; }
-    .counter-num span { color: var(--accent2); }
-    .counter-label { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
-
-    /* COMING SOON */
-    .coming-soon {
-      background: linear-gradient(135deg, rgba(59,123,246,0.07), rgba(0,217,163,0.05));
-      border: 1px solid var(--border); border-radius: 12px;
-      padding: 16px 32px; margin: 0 auto 44px;
-      max-width: 500px; width: calc(100% - 48px);
-      text-align: center; animation: fadeUp 0.7s 0.52s ease both;
-    }
-    .coming-soon p { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--mid); letter-spacing: 0.05em; }
-    .coming-soon p strong { color: var(--accent2); }
-
-    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0 48px; }
-
-    footer { padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; animation: fadeUp 0.7s 0.6s ease both; }
-    .footer-left { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
-    .footer-right { display: flex; gap: 24px; }
-    .footer-right a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-right a:hover { color: var(--text); }
-
-    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
 
+    /* ════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS
+       ════════════════════════════════════════ */
+
+    /* Tablet — up to 768px */
     @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .nav-right { gap: 10px; }
-      .nav-portfolio-btn { padding: 5px 12px; font-size: 10px; }
-      .nav-badge { display: none; }
-      h1 { font-size: clamp(32px, 10vw, 60px); }
-      .hero { padding: 56px 16px 32px; }
-      .subtitle { font-size: 15px; }
-      .profile-card { flex-direction: column; text-align: center; padding: 16px; }
-      .skills-row { justify-content: center; }
-      .identity-types { flex-direction: column; align-items: center; }
-      .expect-grid { grid-template-columns: 1fr; gap: 8px; }
-      .counter-strip { gap: 24px; flex-wrap: wrap; padding: 20px 16px; }
-      .counter-num { font-size: 26px; }
-      footer { padding: 20px 16px; flex-direction: column; gap: 12px; text-align: center; }
-      hr.divider { margin: 0 16px; }
-      .coming-soon { width: calc(100% - 32px); padding: 14px 20px; }
+      .wrapper { padding: 0 20px 64px; }
+      nav { padding: 22px 0; margin-bottom: 48px; }
+      .page-header { margin-bottom: 36px; }
+      .page-header p { font-size: 15px; }
+      .featured-card { padding: 26px 28px; }
+      .card-grid { gap: 12px; }
+      .profile-card { padding: 18px 22px; gap: 16px; }
     }
 
-    @media (max-width: 400px) {
-      nav { padding: 12px 16px; }
-      h1 { font-size: 28px; }
-      .tag { font-size: 10px; padding: 6px 12px; }
-      .pill, .pill-primary { font-size: 10px; padding: 5px 10px; }
-      .counter-strip { gap: 16px; }
-      .footer-right { flex-wrap: wrap; justify-content: center; gap: 16px; }
+    /* Mobile landscape + small tablet — up to 600px */
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .profile-card { flex-wrap: wrap; }
+      .profile-links { margin-left: 0; width: 100%; justify-content: flex-start; }
+      .site-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
+    }
+
+    /* Mobile portrait — up to 480px */
+    @media (max-width: 480px) {
+      .wrapper { padding: 0 16px 56px; }
+      nav { padding: 18px 0; margin-bottom: 36px; }
+      .logo { font-size: 12px; }
+      .featured-card { padding: 20px 18px; border-radius: 12px; }
+      .post-card { padding: 18px 16px; }
+      .card-date { display: none; } /* clean up crowded top row on tiny screens */
+      .page-header { margin-bottom: 28px; }
+      .page-header p { font-size: 14px; max-width: 100%; }
+      .profile-card { padding: 16px; gap: 14px; }
+      .profile-name { font-size: 14px; }
+    }
+
+    /* Very small — up to 360px */
+    @media (max-width: 360px) {
+      .wrapper { padding: 0 12px 48px; }
+      .filter-tab { padding: 7px 12px; font-size: 10px; }
+      .profile-link { font-size: 10px; padding: 5px 10px; }
     }
   </style>
 </head>
@@ -251,112 +356,81 @@
   <div class="wrapper">
 
     <nav>
-      <div class="logo">vignesh<span>iam</span>.com</div>
-      <div class="nav-right">
-        <a href="/portfolio/" class="nav-portfolio-btn">My Story →</a>
-        <div class="nav-badge">coming soon</div>
-      </div>
+      <a href="/" class="logo" aria-label="vigneshiam.com home">vignesh<span>iam</span>.com</a>
+      <a href="/portfolio/" class="nav-portfolio-btn">My Story →</a>
     </nav>
 
-    <section class="hero">
+    <!-- PAGE HEADER -->
+    <header class="page-header">
+      <h1>Things I'm <em>building,</em><br/>learning &amp; sharing.</h1>
+      <p>Projects, step-by-step guides, and notes from real hands-on work — covering GitHub Pages, AWS, Auth0, Linux, IAM, and anything else I find worth writing about.</p>
+    </header>
 
-      <div class="tag">Identity &amp; Access Management</div>
+    <!-- FILTER TABS -->
+    <nav class="filter-tabs" aria-label="Filter by topic">
+      <a href="#" class="filter-tab active">All</a>
+      <a href="#" class="filter-tab">Web</a>
+      <a href="#" class="filter-tab">IAM</a>
+      <a href="#" class="filter-tab">Cloud</a>
+      <a href="#" class="filter-tab">Linux</a>
+    </nav>
 
-      <h1>
-        Learn. Build.<br/>
-        <em>Master</em> <span class="accent-word">IAM.</span>
-      </h1>
-
-      <p class="subtitle">
-        A personal space to share IAM knowledge, step-by-step guides, and
-        real-world experience — covering identity from all angles.
+    <!-- FEATURED CARD -->
+    <a href="/projects/from-domain-to-live-website.html" class="featured-card" aria-label="Read: From Domain to Live Website">
+      <div class="card-top">
+        <span class="card-category cat-web">Web</span>
+        <span class="card-date">Apr 2026</span>
+      </div>
+      <h2 class="card-title">From Domain to Live Website — A Step-by-Step Journey</h2>
+      <p class="card-desc">
+        How I purchased my own domain on Namecheap, built a personal HTML site from scratch,
+        hosted it free on GitHub Pages, and pointed a custom domain — all in a weekend.
       </p>
+      <span class="card-read-more">Read more →</span>
+    </a>
 
-      <div class="profile-card">
-        <img src="/images/profile.png" alt="VigneshKumar Sivasamy" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>
-        <div>
-          <div class="profile-name">VigneshKumar Sivasamy</div>
-          <div class="profile-exp"><span>4 years</span> hands-on in Customer &amp; Workforce Identity</div>
+    <!-- CARD GRID -->
+    <div class="card-grid" role="list">
+
+      <div class="post-card" style="opacity:0.4; cursor:default; pointer-events:none;" role="listitem">
+        <div class="card-top">
+          <span class="card-category cat-cloud">Cloud</span>
+          <span class="card-date">Coming soon</span>
         </div>
+        <h2 class="card-title">Install LibreChat on a Linux Server</h2>
+        <p class="card-desc">Self-hosting a personal AI assistant on AWS EC2 with Docker, Nginx, SSL, and a custom subdomain.</p>
       </div>
 
-      <div class="skills-section">
-        <div class="skills-label">Primary Skills</div>
-        <div class="skills-row">
-          <span class="pill-primary">ADFS</span>
-          <span class="pill-primary">Auth0</span>
-          <span class="pill-primary">Microsoft Entra ID</span>
-          <span class="pill-primary">AWS Cognito</span>
+      <div class="post-card" style="opacity:0.4; cursor:default; pointer-events:none;" role="listitem">
+        <div class="card-top">
+          <span class="card-category cat-iam">IAM</span>
+          <span class="card-date">Coming soon</span>
         </div>
+        <h2 class="card-title">Auth0 LDAP Connector with AWS Managed AD</h2>
+        <p class="card-desc">End-to-end setup of Auth0 connecting to Active Directory via LDAP on an EC2 Windows Server.</p>
       </div>
 
-      <div class="skills-section" style="margin-top: 18px;">
-        <div class="skills-label">Also Covers</div>
-        <div class="skills-row">
-          <span class="pill">Security Groups</span>
-          <span class="pill">LDAP / AD</span>
-          <span class="pill">Exchange Online</span>
-          <span class="pill">PowerShell</span>
-          <span class="pill">Identity Governance</span>
-          <span class="pill">Zero Trust</span>
-          <span class="pill">SAML / OAuth / OIDC</span>
-        </div>
-      </div>
+    </div>
 
-      <div class="identity-types">
-        <div class="id-badge"><span class="dot"></span>Customer Identity (CIAM)</div>
-        <div class="id-badge"><span class="dot" style="background:var(--accent);"></span>Workforce Identity (IAM)</div>
+    <!-- PROFILE CARD -->
+    <div class="profile-card">
+      <img src="/images/profile.png" alt="VigneshKumar Sivasamy — IAM Engineer" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>
+      <div>
+        <div class="profile-name">VigneshKumar Sivasamy</div>
+        <div class="profile-exp"><span>4 years</span> in Customer &amp; Workforce Identity · IAM Engineer</div>
       </div>
-
-      <div class="expect-section">
-        <div class="expect-label">What to Expect</div>
-        <div class="expect-grid">
-          <div class="expect-card">
-            <div class="expect-icon">📖</div>
-            <div class="expect-title">Knowledge Base</div>
-            <div class="expect-desc">Concepts and deep dives explained clearly</div>
-          </div>
-          <div class="expect-card">
-            <div class="expect-icon">🔧</div>
-            <div class="expect-title">How-to Guides</div>
-            <div class="expect-desc">Step-by-step walkthroughs from real scenarios</div>
-          </div>
-          <a href="/portfolio/" class="expect-card linked">
-            <div class="expect-icon">💼</div>
-            <div class="expect-title">My Story</div>
-            <div class="expect-desc">Projects, certifications, and work experience</div>
-          </a>
-        </div>
-      </div>
-
-    </section>
-
-    <div class="counter-strip">
-      <div class="counter-item">
-        <div class="counter-num">4<span>yrs</span></div>
-        <div class="counter-label">Experience</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-num">4<span>+</span></div>
-        <div class="counter-label">IAM Platforms</div>
-      </div>
-      <div class="counter-item">
-        <div class="counter-num">0<span>$</span></div>
-        <div class="counter-label">Paywalls</div>
+      <div class="profile-links">
+        <a href="/portfolio/" class="profile-link">My Story</a>
+        <a href="https://www.linkedin.com/in/s-vigneshkumar-" target="_blank" rel="noopener" class="profile-link">LinkedIn</a>
       </div>
     </div>
 
-    <div class="coming-soon">
-      <p>🚀 &nbsp;Content dropping soon — <strong>Knowledge, guides, and more</strong></p>
-    </div>
-
-    <hr class="divider"/>
-
-    <footer>
-      <div class="footer-left">© 2026 vigneshiam.com</div>
-      <div class="footer-right">
-        <a href="https://www.linkedin.com/in/s-vigneshkumar-" target="_blank">LinkedIn</a>
-        <a href="https://github.com/vsivasamy" target="_blank">GitHub</a>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-copy">© 2026 vigneshiam.com</div>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/s-vigneshkumar-" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/vsivasamy" target="_blank" rel="noopener">GitHub</a>
         <a href="mailto:vsivasamy@vigneshiam.com">Contact</a>
       </div>
     </footer>
