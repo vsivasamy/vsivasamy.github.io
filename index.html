@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <!-- Primary SEO -->
-  <title>VigneshKumar Sivasamy — IAM Engineer, Projects & Guides</title>
-  <meta name="description" content="Personal site of VigneshKumar Sivasamy — IAM Engineer with 4 years in Identity & Access Management. Step-by-step guides on GitHub Pages, AWS, Auth0, Linux, and more."/>
-  <meta name="keywords" content="VigneshKumar Sivasamy, IAM Engineer, Identity Access Management, Auth0, AWS, GitHub Pages, Linux, Entra ID, ADFS, Tech Guides"/>
+  <title>VigneshKumar Sivasamy — Projects, Guides & Things I'm Learning</title>
+  <meta name="description" content="Personal site of VigneshKumar Sivasamy — step-by-step guides and projects on GitHub Pages, AWS EC2, LibreChat, Docker, Auth0, Linux, and more."/>
+  <meta name="keywords" content="VigneshKumar Sivasamy, IAM Engineer, GitHub Pages tutorial, LibreChat self-host, AWS EC2, Docker, Auth0, Linux guides, identity access management"/>
   <meta name="author" content="VigneshKumar Sivasamy"/>
   <link rel="canonical" href="https://vigneshiam.com/"/>
 
-  <!-- Open Graph (WhatsApp, LinkedIn, Facebook previews) -->
+  <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://vigneshiam.com/"/>
-  <meta property="og:title" content="VigneshKumar Sivasamy — IAM Engineer, Projects & Guides"/>
-  <meta property="og:description" content="Step-by-step guides and projects on GitHub Pages, AWS, Auth0, Linux, and Identity Management — by VigneshKumar Sivasamy."/>
+  <meta property="og:title" content="VigneshKumar Sivasamy — Projects, Guides & Things I'm Learning"/>
+  <meta property="og:description" content="Step-by-step guides and projects on GitHub Pages, AWS, LibreChat, Docker, Auth0, Linux, and Identity Management."/>
   <meta property="og:image" content="https://vigneshiam.com/images/profile.png"/>
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:title" content="VigneshKumar Sivasamy — IAM Engineer"/>
-  <meta name="twitter:description" content="Projects and guides on GitHub Pages, AWS, Auth0, Linux, and IAM."/>
+  <meta name="twitter:title" content="VigneshKumar Sivasamy — Projects & Guides"/>
+  <meta name="twitter:description" content="Guides on GitHub Pages, AWS EC2, LibreChat, Docker, Auth0 and more."/>
   <meta name="twitter:image" content="https://vigneshiam.com/images/profile.png"/>
 
   <!-- Structured Data: Person -->
@@ -31,8 +31,8 @@
     "@type": "Person",
     "name": "VigneshKumar Sivasamy",
     "url": "https://vigneshiam.com",
-    "jobTitle": "IAM Engineer",
-    "description": "Identity & Access Management engineer with 4 years of hands-on experience in Auth0, Microsoft Entra ID, ADFS, and AWS Cognito.",
+    "jobTitle": "Identity & Access Management Engineer",
+    "description": "4 years of hands-on experience in Customer & Workforce Identity — Auth0, Microsoft Entra ID, ADFS, AWS Cognito.",
     "sameAs": [
       "https://www.linkedin.com/in/s-vigneshkumar-",
       "https://github.com/vsivasamy"
@@ -41,7 +41,6 @@
   }
   </script>
 
-  <!-- Structured Data: Blog -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,10 +48,7 @@
     "name": "vigneshiam.com",
     "url": "https://vigneshiam.com",
     "description": "Projects, step-by-step guides, and notes on IAM, cloud, Linux, and web — by VigneshKumar Sivasamy.",
-    "author": {
-      "@type": "Person",
-      "name": "VigneshKumar Sivasamy"
-    }
+    "author": { "@type": "Person", "name": "VigneshKumar Sivasamy" }
   }
   </script>
 
@@ -62,253 +58,95 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:      #0A0D12;
-      --surface: #111520;
-      --border:  #1E2535;
-      --accent:  #3B7BF6;
-      --accent2: #00D9A3;
-      --text:    #E8EDF5;
-      --muted:   #5A6478;
-      --mid:     #8A93A8;
+      --bg: #0A0D12; --surface: #111520; --border: #1E2535;
+      --accent: #3B7BF6; --accent2: #00D9A3;
+      --text: #E8EDF5; --muted: #5A6478; --mid: #8A93A8;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg); color: var(--text);
       font-family: 'Instrument Sans', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
+      min-height: 100vh; overflow-x: hidden;
       -webkit-text-size-adjust: 100%;
     }
-
     body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 48px 48px;
-      opacity: 0.3;
-      pointer-events: none;
-      z-index: 0;
+      content: ''; position: fixed; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px; opacity: 0.3; pointer-events: none; z-index: 0;
     }
-
     .orb { position: fixed; border-radius: 50%; filter: blur(130px); pointer-events: none; z-index: 0; }
-    .orb-1 {
-      width: 520px; height: 520px;
-      background: radial-gradient(circle, rgba(59,123,246,0.16) 0%, transparent 70%);
-      top: -120px; left: -120px;
-      animation: drift1 20s ease-in-out infinite alternate;
-    }
-    .orb-2 {
-      width: 420px; height: 420px;
-      background: radial-gradient(circle, rgba(0,217,163,0.11) 0%, transparent 70%);
-      bottom: -80px; right: -80px;
-      animation: drift2 24s ease-in-out infinite alternate;
-    }
+    .orb-1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(59,123,246,0.16) 0%, transparent 70%); top: -120px; left: -120px; animation: drift1 20s ease-in-out infinite alternate; }
+    .orb-2 { width: 420px; height: 420px; background: radial-gradient(circle, rgba(0,217,163,0.11) 0%, transparent 70%); bottom: -80px; right: -80px; animation: drift2 24s ease-in-out infinite alternate; }
     @keyframes drift1 { to { transform: translate(70px, 90px); } }
     @keyframes drift2 { to { transform: translate(-60px, -50px); } }
 
-    .wrapper {
-      position: relative; z-index: 1;
-      max-width: 860px; margin: 0 auto;
-      padding: 0 24px 80px;
-    }
+    .wrapper { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
 
-    /* ── NAV ── */
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 64px;
-      animation: fadeDown 0.6s ease both;
-    }
-    .logo {
-      font-family: 'DM Mono', monospace; font-size: 13px;
-      font-weight: 500; color: var(--accent);
-      letter-spacing: 0.08em; text-transform: uppercase;
-      text-decoration: none;
-    }
+    /* NAV */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; border-bottom: 1px solid var(--border); margin-bottom: 64px; animation: fadeDown 0.6s ease both; }
+    .logo { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
     .logo span { color: var(--accent2); }
-    .nav-portfolio-btn {
-      font-family: 'DM Mono', monospace; font-size: 11px;
-      color: var(--accent2); border: 1px solid rgba(0,217,163,0.35);
-      background: rgba(0,217,163,0.06);
-      padding: 8px 18px; border-radius: 100px;
-      letter-spacing: 0.06em; text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
-      white-space: nowrap;
-      /* larger tap target on mobile */
-      min-height: 40px; display: flex; align-items: center;
-    }
+    .nav-portfolio-btn { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2); border: 1px solid rgba(0,217,163,0.35); background: rgba(0,217,163,0.06); padding: 8px 18px; border-radius: 100px; letter-spacing: 0.06em; text-decoration: none; transition: background 0.2s, border-color 0.2s; white-space: nowrap; min-height: 40px; display: flex; align-items: center; }
     .nav-portfolio-btn:hover { background: rgba(0,217,163,0.12); border-color: var(--accent2); }
 
-    /* ── PAGE HEADER ── */
-    .page-header {
-      margin-bottom: 48px;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
-    .page-header h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(32px, 6vw, 56px);
-      font-weight: 400; line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 14px;
-    }
-    .page-header h1 em {
-      font-style: italic;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(232,237,245,0.4);
-    }
-    .page-header p {
-      font-size: 16px; color: var(--mid);
-      max-width: 500px; line-height: 1.75;
-    }
+    /* PAGE HEADER */
+    .page-header { margin-bottom: 48px; animation: fadeUp 0.7s 0.1s ease both; }
+    .page-header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 6vw, 56px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .page-header h1 em { font-style: italic; color: transparent; -webkit-text-stroke: 1px rgba(232,237,245,0.4); }
+    .page-header p { font-size: 16px; color: var(--mid); max-width: 500px; line-height: 1.75; }
 
-    /* ── FILTER TABS ── */
-    .filter-tabs {
-      display: flex; gap: 8px; flex-wrap: wrap;
-      margin-bottom: 32px;
-      animation: fadeUp 0.7s 0.15s ease both;
-      /* horizontal scroll on very small screens */
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 4px;
-    }
+    /* FILTER TABS */
+    .filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; animation: fadeUp 0.7s 0.15s ease both; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
     .filter-tabs::-webkit-scrollbar { display: none; }
-    .filter-tab {
-      font-family: 'DM Mono', monospace; font-size: 11px;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 8px 16px; border-radius: 100px;
-      border: 1px solid var(--border); background: var(--surface);
-      color: var(--muted); cursor: pointer;
-      transition: all 0.2s; text-decoration: none;
-      white-space: nowrap; flex-shrink: 0;
-      min-height: 36px; display: flex; align-items: center;
-    }
-    .filter-tab:hover, .filter-tab.active {
-      color: var(--accent2);
-      border-color: rgba(0,217,163,0.4);
-      background: rgba(0,217,163,0.06);
-    }
+    .filter-tab { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 8px 16px; border-radius: 100px; border: 1px solid var(--border); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.2s; text-decoration: none; white-space: nowrap; flex-shrink: 0; min-height: 36px; display: flex; align-items: center; }
+    .filter-tab:hover, .filter-tab.active { color: var(--accent2); border-color: rgba(0,217,163,0.4); background: rgba(0,217,163,0.06); }
 
-    /* ── FEATURED CARD ── */
-    .featured-card {
-      display: block; text-decoration: none; color: inherit;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 32px 36px;
-      margin-bottom: 16px;
-      transition: border-color 0.2s, background 0.2s;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
+    /* FEATURED CARD */
+    .featured-card { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px 36px; margin-bottom: 16px; transition: border-color 0.2s, background 0.2s; animation: fadeUp 0.7s 0.2s ease both; }
     .featured-card:hover { border-color: var(--accent2); background: rgba(0,217,163,0.03); }
 
-    /* ── CARD GRID ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 48px;
-      animation: fadeUp 0.7s 0.25s ease both;
-    }
-    .post-card {
-      display: block; text-decoration: none; color: inherit;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 14px; padding: 24px 26px;
-      transition: border-color 0.2s, background 0.2s;
-    }
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 48px; animation: fadeUp 0.7s 0.25s ease both; }
+    .post-card { display: block; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px 26px; transition: border-color 0.2s, background 0.2s; }
     .post-card:hover { border-color: var(--accent2); background: rgba(0,217,163,0.03); }
 
-    /* ── SHARED CARD ELEMENTS ── */
-    .card-top {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 14px; flex-wrap: wrap;
-    }
+    /* SHARED CARD ELEMENTS */
+    .card-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
     .featured-card .card-top { margin-bottom: 20px; }
-
-    .card-category {
-      font-family: 'DM Mono', monospace; font-size: 10px;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 4px 10px; border-radius: 100px;
-      flex-shrink: 0;
-    }
+    .card-category { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; flex-shrink: 0; }
     .cat-web   { color: var(--accent2); border: 1px solid rgba(0,217,163,0.3);  background: rgba(0,217,163,0.07); }
     .cat-iam   { color: var(--accent);  border: 1px solid rgba(59,123,246,0.3); background: rgba(59,123,246,0.07); }
     .cat-cloud { color: #f59e0b;        border: 1px solid rgba(245,158,11,0.3); background: rgba(245,158,11,0.07); }
     .cat-linux { color: #e879f9;        border: 1px solid rgba(232,121,249,0.3);background: rgba(232,121,249,0.07); }
-
-    .card-date {
-      font-family: 'DM Mono', monospace; font-size: 10px;
-      color: var(--muted); letter-spacing: 0.04em;
-      margin-left: auto;
-    }
-    .card-title {
-      font-family: 'DM Serif Display', serif;
-      font-weight: 400; line-height: 1.25;
-      color: var(--text); margin-bottom: 10px;
-    }
+    .card-date { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.04em; margin-left: auto; }
+    .card-title { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.25; color: var(--text); margin-bottom: 10px; }
     .featured-card .card-title { font-size: clamp(20px, 3vw, 26px); margin-bottom: 12px; }
     .post-card    .card-title  { font-size: clamp(16px, 2.5vw, 18px); }
-
-    .card-desc {
-      font-size: 13px; color: var(--mid); line-height: 1.7;
-    }
+    .card-desc { font-size: 13px; color: var(--mid); line-height: 1.7; }
     .featured-card .card-desc { font-size: 14px; max-width: 580px; margin-bottom: 20px; }
+    .card-read-more { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2); letter-spacing: 0.04em; display: inline-block; margin-top: 4px; }
 
-    .card-read-more {
-      font-family: 'DM Mono', monospace; font-size: 11px;
-      color: var(--accent2); letter-spacing: 0.04em;
-      display: inline-block; margin-top: 4px;
-    }
-
-    /* ── PROFILE CARD ── */
-    .profile-card {
-      display: flex; align-items: center; gap: 20px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 20px 28px;
-      margin-bottom: 40px;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
+    /* PROFILE CARD */
+    .profile-card { display: flex; align-items: center; gap: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 28px; margin-bottom: 40px; animation: fadeUp 0.7s 0.3s ease both; }
     .profile-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
     .profile-exp  { font-size: 12px; color: var(--mid); line-height: 1.6; }
     .profile-exp span { color: var(--accent); font-weight: 600; }
     .profile-links { margin-left: auto; display: flex; gap: 10px; flex-shrink: 0; flex-wrap: wrap; }
-    .profile-link {
-      font-family: 'DM Mono', monospace; font-size: 11px;
-      color: var(--muted); text-decoration: none;
-      border: 1px solid var(--border); padding: 6px 14px;
-      border-radius: 100px; transition: all 0.2s;
-      min-height: 34px; display: flex; align-items: center;
-    }
+    .profile-link { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 6px 14px; border-radius: 100px; transition: all 0.2s; min-height: 34px; display: flex; align-items: center; }
     .profile-link:hover { color: var(--text); border-color: var(--accent); }
 
-    /* ── FOOTER ── */
-    .site-footer {
-      border-top: 1px solid var(--border); padding-top: 28px;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px;
-      animation: fadeUp 0.7s 0.35s ease both;
-    }
+    /* FOOTER */
+    .site-footer { border-top: 1px solid var(--border); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; animation: fadeUp 0.7s 0.35s ease both; }
     .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
     .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .footer-links a {
-      font-size: 12px; color: var(--muted); text-decoration: none;
-      transition: color 0.2s; min-height: 32px; display: flex; align-items: center;
-    }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; min-height: 32px; display: flex; align-items: center; }
     .footer-links a:hover { color: var(--text); }
 
     @keyframes fadeUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
     @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
 
-    /* ════════════════════════════════════════
-       RESPONSIVE BREAKPOINTS
-       ════════════════════════════════════════ */
-
-    /* Tablet — up to 768px */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .wrapper { padding: 0 20px 64px; }
       nav { padding: 22px 0; margin-bottom: 48px; }
@@ -318,30 +156,23 @@
       .card-grid { gap: 12px; }
       .profile-card { padding: 18px 22px; gap: 16px; }
     }
-
-    /* Mobile landscape + small tablet — up to 600px */
     @media (max-width: 600px) {
-      .card-grid { grid-template-columns: 1fr; }
       .profile-card { flex-wrap: wrap; }
       .profile-links { margin-left: 0; width: 100%; justify-content: flex-start; }
       .site-footer { flex-direction: column; align-items: flex-start; gap: 16px; }
     }
-
-    /* Mobile portrait — up to 480px */
     @media (max-width: 480px) {
       .wrapper { padding: 0 16px 56px; }
       nav { padding: 18px 0; margin-bottom: 36px; }
       .logo { font-size: 12px; }
       .featured-card { padding: 20px 18px; border-radius: 12px; }
       .post-card { padding: 18px 16px; }
-      .card-date { display: none; } /* clean up crowded top row on tiny screens */
+      .card-date { display: none; }
       .page-header { margin-bottom: 28px; }
       .page-header p { font-size: 14px; max-width: 100%; }
       .profile-card { padding: 16px; gap: 14px; }
       .profile-name { font-size: 14px; }
     }
-
-    /* Very small — up to 360px */
     @media (max-width: 360px) {
       .wrapper { padding: 0 12px 48px; }
       .filter-tab { padding: 7px 12px; font-size: 10px; }
@@ -360,13 +191,11 @@
       <a href="/portfolio/" class="nav-portfolio-btn">My Story →</a>
     </nav>
 
-    <!-- PAGE HEADER -->
     <header class="page-header">
       <h1>Things I'm <em>building,</em><br/>learning &amp; sharing.</h1>
-      <p>Projects, step-by-step guides, and notes from real hands-on work — covering GitHub Pages, AWS, Auth0, Linux, IAM, and anything else I find worth writing about.</p>
+      <p>Projects, step-by-step guides, and notes from real hands-on work — covering GitHub Pages, AWS, Docker, Auth0, Linux, IAM, and anything else I find worth writing about.</p>
     </header>
 
-    <!-- FILTER TABS -->
     <nav class="filter-tabs" aria-label="Filter by topic">
       <a href="#" class="filter-tab active">All</a>
       <a href="#" class="filter-tab">Web</a>
@@ -375,49 +204,40 @@
       <a href="#" class="filter-tab">Linux</a>
     </nav>
 
-    <!-- FEATURED CARD -->
-    <a href="/projects/from-domain-to-live-website.html" class="featured-card" aria-label="Read: From Domain to Live Website">
+    <!-- FEATURED CARD — most recent -->
+    <a href="/projects/install-librechat-linux-server.html" class="featured-card" aria-label="Read: Self-Host Your Own AI Assistant on a Linux Server">
       <div class="card-top">
-        <span class="card-category cat-web">Web</span>
+        <span class="card-category cat-cloud">Cloud</span>
         <span class="card-date">Apr 2026</span>
       </div>
-      <h2 class="card-title">From Domain to Live Website — A Step-by-Step Journey</h2>
+      <h2 class="card-title">Self-Host Your Own AI Assistant on a Linux Server</h2>
       <p class="card-desc">
-        How I purchased my own domain on Namecheap, built a personal HTML site from scratch,
-        hosted it free on GitHub Pages, and pointed a custom domain — all in a weekend.
+        How I installed LibreChat on AWS EC2 Ubuntu using Docker Compose, set up Nginx as a reverse proxy,
+        secured it with Let's Encrypt SSL, and connected Google Gemini free tier — all from scratch.
       </p>
       <span class="card-read-more">Read more →</span>
     </a>
 
     <!-- CARD GRID -->
     <div class="card-grid" role="list">
-
-      <div class="post-card" style="opacity:0.4; cursor:default; pointer-events:none;" role="listitem">
+      <a href="/projects/from-domain-to-live-website.html" class="post-card" role="listitem" aria-label="Read: From Domain to Live Website">
         <div class="card-top">
-          <span class="card-category cat-cloud">Cloud</span>
-          <span class="card-date">Coming soon</span>
+          <span class="card-category cat-web">Web</span>
+          <span class="card-date">Apr 2026</span>
         </div>
-        <h2 class="card-title">Install LibreChat on a Linux Server</h2>
-        <p class="card-desc">Self-hosting a personal AI assistant on AWS EC2 with Docker, Nginx, SSL, and a custom subdomain.</p>
-      </div>
+        <h2 class="card-title">From Domain to Live Website — A Step-by-Step Journey</h2>
+        <p class="card-desc">Buy a domain, build an HTML site, host free on GitHub Pages, and point a custom domain.</p>
+      </a>
 
-      <div class="post-card" style="opacity:0.4; cursor:default; pointer-events:none;" role="listitem">
-        <div class="card-top">
-          <span class="card-category cat-iam">IAM</span>
-          <span class="card-date">Coming soon</span>
-        </div>
-        <h2 class="card-title">Auth0 LDAP Connector with AWS Managed AD</h2>
-        <p class="card-desc">End-to-end setup of Auth0 connecting to Active Directory via LDAP on an EC2 Windows Server.</p>
-      </div>
 
     </div>
 
     <!-- PROFILE CARD -->
     <div class="profile-card">
-      <img src="/images/profile.png" alt="VigneshKumar Sivasamy — IAM Engineer" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>
+      <img src="/images/profile.png" alt="VigneshKumar Sivasamy" width="52" height="52" style="width:52px;height:52px;border-radius:50%;object-fit:cover;flex-shrink:0;"/>
       <div>
         <div class="profile-name">VigneshKumar Sivasamy</div>
-        <div class="profile-exp"><span>4 years</span> in Customer &amp; Workforce Identity · IAM Engineer</div>
+        <div class="profile-exp"><span>4 years</span> in Customer &amp; Workforce Identity</div>
       </div>
       <div class="profile-links">
         <a href="/portfolio/" class="profile-link">My Story</a>
@@ -425,7 +245,6 @@
       </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
       <div class="footer-copy">© 2026 vigneshiam.com</div>
       <div class="footer-links">
