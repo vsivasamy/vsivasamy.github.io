@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Primary SEO -->
+  <title>From Domain to Live Website — GitHub Pages & Custom Domain Guide | vigneshiam.com</title>
+  <meta name="description" content="Step-by-step guide: buy a domain on Namecheap, build an HTML website, host it free on GitHub Pages, manage DNS with Cloudflare, and point your custom domain. By VigneshKumar Sivasamy."/>
+  <meta name="keywords" content="GitHub Pages custom domain, Namecheap GitHub Pages, how to host website free, Cloudflare DNS GitHub Pages, HTML website tutorial, custom domain setup, static site hosting"/>
+  <meta name="author" content="VigneshKumar Sivasamy"/>
+  <link rel="canonical" href="https://vigneshiam.com/projects/from-domain-to-live-website.html"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://vigneshiam.com/projects/from-domain-to-live-website.html"/>
+  <meta property="og:title" content="From Domain to Live Website — A Step-by-Step Journey"/>
+  <meta property="og:description" content="How to buy a domain, build an HTML site, host it free on GitHub Pages, and point a custom domain — all in a weekend."/>
+  <meta property="og:image" content="https://vigneshiam.com/images/profile.png"/>
+  <meta property="article:author" content="VigneshKumar Sivasamy"/>
+  <meta property="article:published_time" content="2026-04-19"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="From Domain to Live Website — GitHub Pages Guide"/>
+  <meta name="twitter:description" content="Buy a domain, build HTML, host free on GitHub Pages, Cloudflare DNS — step-by-step."/>
+  <meta name="twitter:image" content="https://vigneshiam.com/images/profile.png"/>
+
+  <!-- Structured Data: HowTo Article -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "From Domain to Live Website — A Step-by-Step Journey",
+    "description": "How to purchase a domain on Namecheap, build an HTML website, host it free on GitHub Pages, manage DNS with Cloudflare, and point a custom domain.",
+    "url": "https://vigneshiam.com/projects/from-domain-to-live-website.html",
+    "author": {
+      "@type": "Person",
+      "name": "VigneshKumar Sivasamy",
+      "url": "https://vigneshiam.com"
+    },
+    "datePublished": "2026-04-19",
+    "step": [
+      { "@type": "HowToStep", "name": "Purchase Your Domain", "text": "Buy a domain from Namecheap with free WhoisGuard privacy protection." },
+      { "@type": "HowToStep", "name": "Create a GitHub Repository", "text": "Create a repo named yourusername.github.io on GitHub." },
+      { "@type": "HowToStep", "name": "Build Your HTML Website", "text": "Create index.html and any supporting pages and push to GitHub." },
+      { "@type": "HowToStep", "name": "Enable GitHub Pages", "text": "Enable GitHub Pages in repository settings and deploy from the main branch." },
+      { "@type": "HowToStep", "name": "Move DNS to Cloudflare", "text": "Add your site to Cloudflare and update nameservers in Namecheap." },
+      { "@type": "HowToStep", "name": "Point Your Domain to GitHub Pages", "text": "Add A records and a CNAME file, then enable HTTPS in GitHub Pages settings." }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #0A0D12;
+      --surface: #111520;
+      --border:  #1E2535;
+      --accent:  #3B7BF6;
+      --accent2: #00D9A3;
+      --text:    #E8EDF5;
+      --muted:   #5A6478;
+      --mid:     #8A93A8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Instrument Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.7;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 48px 48px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb { position: fixed; border-radius: 50%; filter: blur(130px); pointer-events: none; z-index: 0; }
+    .orb-1 {
+      width: 520px; height: 520px;
+      background: radial-gradient(circle, rgba(59,123,246,0.14) 0%, transparent 70%);
+      top: -120px; left: -120px;
+    }
+    .orb-2 {
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(0,217,163,0.09) 0%, transparent 70%);
+      bottom: -80px; right: -80px;
+    }
+
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 780px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+      animation: fadeDown 0.6s ease both;
+    }
+    .logo {
+      font-family: 'DM Mono', monospace; font-size: 13px;
+      font-weight: 500; color: var(--accent);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent2); }
+    .back-btn {
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--mid); text-decoration: none;
+      border: 1px solid var(--border); background: var(--surface);
+      padding: 8px 16px; border-radius: 100px;
+      letter-spacing: 0.06em;
+      transition: color 0.2s, border-color 0.2s;
+      min-height: 40px; display: flex; align-items: center;
+    }
+    .back-btn:hover { color: var(--text); border-color: var(--accent); }
+
+    /* ── ARTICLE HEADER ── */
+    .project-header { margin-bottom: 48px; animation: fadeUp 0.7s 0.1s ease both; }
+
+    .project-meta {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .meta-tag {
+      font-family: 'DM Mono', monospace; font-size: 10px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+    }
+    .meta-tag.green { color: var(--accent2); border: 1px solid rgba(0,217,163,0.25); background: rgba(0,217,163,0.06); }
+    .meta-tag.blue  { color: var(--accent);  border: 1px solid rgba(59,123,246,0.25); background: rgba(59,123,246,0.06); }
+    .meta-tag.muted { color: var(--muted);   border: 1px solid var(--border); background: var(--surface); }
+
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 400; line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 20px;
+    }
+    .project-title em { font-style: italic; color: var(--accent2); }
+
+    .project-intro { font-size: 16px; color: var(--mid); max-width: 640px; line-height: 1.8; }
+
+    /* ── OVERVIEW BOX ── */
+    .overview-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 48px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    .overview-key { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
+    .overview-val { font-size: 13px; color: var(--text); font-weight: 500; }
+    .overview-val a { color: var(--accent2); text-decoration: none; }
+    .overview-val a:hover { text-decoration: underline; }
+
+    /* ── STACK ── */
+    .stack-section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 28px; margin-bottom: 48px;
+      animation: fadeUp 0.7s ease both;
+    }
+    .stack-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+    .stack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stack-item { display: flex; align-items: center; gap: 10px; }
+    .stack-icon { font-size: 18px; flex-shrink: 0; }
+    .stack-name { font-size: 13px; color: var(--text); font-weight: 500; }
+    .stack-desc { font-size: 11px; color: var(--muted); }
+
+    /* ── STEPS ── */
+    .step { margin-bottom: 48px; animation: fadeUp 0.7s ease both; }
+
+    .step-header {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2);
+      border: 1px solid rgba(0,217,163,0.3); background: rgba(0,217,163,0.06);
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 3px; font-weight: 500;
+    }
+    .step-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(18px, 3vw, 22px); font-weight: 400;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .step-subtitle { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 0.04em; }
+
+    .step-body { padding-left: 48px; }
+    .step-body p { font-size: 15px; color: var(--mid); margin-bottom: 16px; line-height: 1.8; }
+    .step-body p strong { color: var(--text); font-weight: 600; }
+
+    /* ── CONTENT CARDS ── */
+    .info-card {
+      background: rgba(59,123,246,0.06); border: 1px solid rgba(59,123,246,0.2);
+      border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;
+      font-size: 13px; color: var(--mid); line-height: 1.7;
+    }
+    .info-card strong { color: var(--accent); }
+
+    .tip-card {
+      background: rgba(0,217,163,0.05); border: 1px solid rgba(0,217,163,0.2);
+      border-left: 3px solid var(--accent2);
+      border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 16px;
+      font-size: 13px; color: var(--mid); line-height: 1.7;
+    }
+    .tip-card strong { color: var(--accent2); }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #0D1117; border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px; margin-bottom: 16px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .code-block pre {
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      color: #8B949E; line-height: 1.8; white-space: pre;
+    }
+    .code-block pre .hl  { color: var(--accent2); }
+    .code-block pre .hl2 { color: var(--accent); }
+    .code-block pre .cm  { color: var(--muted); }
+
+    /* ── FILE TREE ── */
+    .file-tree {
+      background: #0D1117; border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px; margin-bottom: 16px;
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      color: #8B949E; line-height: 2;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+    }
+    .file-tree .folder { color: var(--accent); }
+    .file-tree .file   { color: var(--accent2); }
+    .file-tree .note   { color: var(--muted); font-size: 11px; }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; margin-bottom: 16px; }
+    .checklist li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; color: var(--mid); padding: 8px 0;
+      border-bottom: 1px solid rgba(30,37,53,0.6);
+      line-height: 1.5;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before {
+      content: '✓'; color: var(--accent2);
+      font-family: 'DM Mono', monospace; font-size: 12px;
+      margin-top: 1px; flex-shrink: 0;
+    }
+
+    .step-divider { border: none; border-top: 1px solid var(--border); margin: 0 0 48px; }
+
+    /* ── FEEDBACK CARD ── */
+    .feedback-card {
+      display: flex; align-items: flex-start; gap: 18px;
+      background: linear-gradient(135deg, rgba(59,123,246,0.06), rgba(0,217,163,0.04));
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+    .feedback-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .feedback-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .feedback-desc { font-size: 13px; color: var(--mid); line-height: 1.7; margin-bottom: 14px; }
+    .feedback-btn {
+      display: inline-flex; align-items: center;
+      font-family: 'DM Mono', monospace; font-size: 11px;
+      color: var(--accent2); letter-spacing: 0.04em;
+      border: 1px solid rgba(0,217,163,0.3); background: rgba(0,217,163,0.06);
+      padding: 8px 16px; border-radius: 100px;
+      text-decoration: none; transition: all 0.2s;
+      min-height: 36px;
+    }
+    .feedback-btn:hover { background: rgba(0,217,163,0.12); border-color: var(--accent2); }
+
+    /* ── PAGE FOOTER ── */
+    .page-footer {
+      border-top: 1px solid var(--border); padding-top: 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
+      animation: fadeUp 0.7s ease both;
+    }
+    .page-footer a { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+    .page-footer a:hover { color: var(--text); }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE BREAKPOINTS
+       ════════════════════════════════════════ */
+
+    /* Tablet — up to 768px */
+    @media (max-width: 768px) {
+      .wrapper { padding: 0 20px 64px; }
+      nav { padding: 22px 0; margin-bottom: 48px; }
+      .overview-box { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .stack-grid { grid-template-columns: repeat(2, 1fr); }
+      .project-intro { font-size: 15px; }
+      .feedback-card { padding: 20px 22px; }
+    }
+
+    /* Mobile landscape — up to 600px */
+    @media (max-width: 600px) {
+      .overview-box { grid-template-columns: 1fr; gap: 14px; padding: 20px; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .step-body { padding-left: 0; padding-top: 8px; }
+      .feedback-card { flex-direction: column; gap: 12px; }
+    }
+
+    /* Mobile portrait — up to 480px */
+    @media (max-width: 480px) {
+      .wrapper { padding: 0 16px 56px; }
+      nav { padding: 18px 0; margin-bottom: 36px; }
+      .logo { font-size: 12px; }
+      .project-header { margin-bottom: 32px; }
+      .project-intro { font-size: 14px; }
+      .step-header { gap: 12px; }
+      .step-body p { font-size: 14px; }
+      .checklist li { font-size: 13px; }
+      .info-card, .tip-card { font-size: 13px; padding: 12px 14px; }
+      .code-block pre { font-size: 11px; }
+      .file-tree { font-size: 11px; }
+      .overview-box { padding: 16px; margin-bottom: 32px; }
+      .stack-section { padding: 20px; }
+      .step-divider { margin-bottom: 36px; }
+    }
+
+    /* Very small — up to 360px */
+    @media (max-width: 360px) {
+      .wrapper { padding: 0 12px 48px; }
+      .project-meta { gap: 6px; }
+      .meta-tag { font-size: 9px; padding: 4px 8px; }
+      .step-num { width: 28px; height: 28px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="wrapper">
+
+    <nav>
+      <a href="/" class="logo" aria-label="vigneshiam.com home">vignesh<span>iam</span>.com</a>
+      <a href="/" class="back-btn">← Home</a>
+    </nav>
+
+    <!-- ARTICLE HEADER -->
+    <header class="project-header">
+      <div class="project-meta">
+        <span class="meta-tag green">Project</span>
+        <span class="meta-tag blue">Web Hosting</span>
+        <span class="meta-tag muted">April 2026</span>
+      </div>
+      <h1 class="project-title">From Domain to <em>Live Website</em><br/>— A Step-by-Step Journey</h1>
+      <p class="project-intro">
+        How I purchased my own domain, built a personal HTML website from scratch,
+        hosted it for free on GitHub Pages, and pointed a custom domain to it —
+        all in a single weekend.
+      </p>
+    </header>
+
+    <!-- OVERVIEW -->
+    <div class="overview-box">
+      <div class="overview-item">
+        <div class="overview-key">Domain Registrar</div>
+        <div class="overview-val">Namecheap</div>
+      </div>
+      <div class="overview-item">
+        <div class="overview-key">Hosting</div>
+        <div class="overview-val">GitHub Pages (Free)</div>
+      </div>
+      <div class="overview-item">
+        <div class="overview-key">DNS Management</div>
+        <div class="overview-val">Cloudflare</div>
+      </div>
+      <div class="overview-item">
+        <div class="overview-key">Live Site</div>
+        <div class="overview-val"><a href="https://vigneshiam.com" target="_blank" rel="noopener">vigneshiam.com →</a></div>
+      </div>
+      <div class="overview-item">
+        <div class="overview-key">Cost</div>
+        <div class="overview-val">~$10/year (domain only)</div>
+      </div>
+      <div class="overview-item">
+        <div class="overview-key">Time to Live</div>
+        <div class="overview-val">Under a weekend</div>
+      </div>
+    </div>
+
+    <!-- STACK -->
+    <div class="stack-section">
+      <div class="stack-label">Stack Used</div>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <span class="stack-icon">🌐</span>
+          <div><div class="stack-name">Namecheap</div><div class="stack-desc">Domain registration</div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-icon">🐙</span>
+          <div><div class="stack-name">GitHub Pages</div><div class="stack-desc">Free static site hosting</div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-icon">☁️</span>
+          <div><div class="stack-name">Cloudflare</div><div class="stack-desc">DNS management & proxy</div></div>
+        </div>
+        <div class="stack-item">
+          <span class="stack-icon">📄</span>
+          <div><div class="stack-name">HTML / CSS</div><div class="stack-desc">Pure HTML — no frameworks</div></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="step-divider"/>
+
+    <!-- STEP 1 -->
+    <article class="step">
+      <div class="step-header">
+        <div class="step-num">01</div>
+        <div>
+          <h2 class="step-title">Purchase Your Domain</h2>
+          <div class="step-subtitle">namecheap.com → search → buy</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>The first step is owning your domain name — your address on the internet, like <strong>yourname.com</strong>. I chose <strong>Namecheap</strong> for its clean interface, competitive pricing, and free WhoisGuard privacy protection.</p>
+        <div class="info-card">
+          <strong>What is a domain registrar?</strong><br/>
+          A registrar is a company authorised to sell domain names. You pay an annual fee (typically $8–$15/year for a .com) to reserve it. You renew it each year.
+        </div>
+        <ul class="checklist">
+          <li>Go to namecheap.com and search for your desired domain name</li>
+          <li>Add to cart — check WhoisGuard (privacy protection) is included free</li>
+          <li>Complete checkout — domain is active within minutes</li>
+          <li>You'll see it listed in your Namecheap dashboard under "Domain List"</li>
+        </ul>
+        <div class="tip-card">
+          <strong>Tip:</strong> Avoid domains with hyphens or numbers. Stick to .com if available — it's the most trusted extension globally.
+        </div>
+      </div>
+    </article>
+
+    <hr class="step-divider"/>
+
+    <!-- STEP 2 -->
+    <article class="step">
+      <div class="step-header">
+        <div class="step-num">02</div>
+        <div>
+          <h2 class="step-title">Create a GitHub Repository</h2>
+          <div class="step-subtitle">github.com → new repo → special naming</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>GitHub Pages is a free hosting service built into GitHub. For a personal site, you need a repository with a <strong>specific name</strong> — your GitHub username followed by <code>.github.io</code>.</p>
+        <div class="info-card">
+          <strong>Why this specific name?</strong><br/>
+          GitHub automatically recognises a repo named <strong>username.github.io</strong> as your personal Pages site and serves it at that URL.
+        </div>
+        <p>My GitHub username is <strong>vsivasamy</strong>, so my repo is:</p>
+        <div class="code-block"><pre><span class="hl">vsivasamy</span><span class="cm">/</span><span class="hl2">vsivasamy.github.io</span></pre></div>
+        <ul class="checklist">
+          <li>Go to github.com → click "New repository"</li>
+          <li>Name it exactly: <strong>yourusername.github.io</strong></li>
+          <li>Set it to Public (required for GitHub Pages on free plan)</li>
+          <li>Initialise with a README — then clone it locally</li>
+        </ul>
+      </div>
+    </article>
+
+    <hr class="step-divider"/>
+
+    <!-- STEP 3 -->
+    <article class="step">
+      <div class="step-header">
+        <div class="step-num">03</div>
+        <div>
+          <h2 class="step-title">Build Your HTML Website</h2>
+          <div class="step-subtitle">index.html → images/ → portfolio/</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>GitHub Pages serves static files — HTML, CSS, JavaScript, and images. No server-side code, no database. The entry point is always <strong>index.html</strong> at the root of your repo.</p>
+        <p>My repository structure:</p>
+        <div class="file-tree">
+          <span class="folder">vsivasamy.github.io/</span><br/>
+          ├── <span class="file">index.html</span> &nbsp;&nbsp;&nbsp;<span class="note">← main landing page</span><br/>
+          ├── <span class="file">CNAME</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="note">← custom domain pointer</span><br/>
+          ├── <span class="folder">images/</span><br/>
+          │&nbsp;&nbsp;&nbsp;└── <span class="file">profile.png</span> &nbsp;<span class="note">← profile picture</span><br/>
+          └── <span class="folder">portfolio/</span><br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="file">index.html</span> &nbsp;<span class="note">← My Story page</span>
+        </div>
+        <div class="tip-card">
+          <strong>Tip:</strong> Each folder with an <strong>index.html</strong> becomes its own URL automatically. So <code>portfolio/index.html</code> is accessible at <code>vigneshiam.com/portfolio/</code> — no extra config needed.
+        </div>
+        <ul class="checklist">
+          <li>Create <strong>index.html</strong> at the root — this is your homepage</li>
+          <li>Add an <strong>images/</strong> folder for assets like your profile photo</li>
+          <li>Add a <strong>portfolio/index.html</strong> for additional pages</li>
+          <li>Commit and push to GitHub — the site goes live within seconds</li>
+        </ul>
+      </div>
+    </article>
+
+    <hr class="step-divider"/>
+
+    <!-- STEP 4 -->
+    <article class="step">
+      <div class="step-header">
+        <div class="step-num">04</div>
+        <div>
+          <h2 class="step-title">Enable GitHub Pages</h2>
+          <div class="step-subtitle">repo settings → pages → deploy from branch</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Once your files are pushed, tell GitHub to serve them as a website. This is a one-time setting.</p>
+        <ul class="checklist">
+          <li>Go to your repo on GitHub → click <strong>Settings</strong></li>
+          <li>In the left sidebar, click <strong>Pages</strong></li>
+          <li>Under "Source", select <strong>Deploy from a branch</strong></li>
+          <li>Choose <strong>main</strong> branch and <strong>/ (root)</strong> folder → click Save</li>
+          <li>After a minute, GitHub shows: "Your site is live at https://yourusername.github.io"</li>
+        </ul>
+        <div class="info-card">
+          <strong>What happens under the hood?</strong><br/>
+          GitHub runs a build pipeline every time you push. It serves your files from a global CDN with free HTTPS included automatically.
+        </div>
+      </div>
+    </article>
+
+    <hr class="step-divider"/>
+
+    <!-- STEP 5 -->
+    <article class="step">
+      <div class="step-header">
+        <div class="step-num">05</div>
+        <div>
+          <h2 class="step-title">Move DNS to Cloudflare</h2>
+          <div class="step-subtitle">cloudflare.com → add site → update nameservers</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Before pointing your domain to GitHub Pages, I moved DNS management to <strong>Cloudflare</strong> — faster DNS, free CDN, DDoS protection, and a much cleaner dashboard.</p>
+        <ul class="checklist">
+          <li>Create a free account at cloudflare.com</li>
+          <li>Click "Add a Site" → enter your domain → choose the Free plan</li>
+          <li>Cloudflare scans and imports your existing DNS records automatically</li>
+          <li>Note the two Cloudflare nameservers provided</li>
+          <li>Go to Namecheap → Domain List → Manage → Nameservers → Custom DNS</li>
+          <li>Paste the Cloudflare nameservers and save — propagation takes a few hours</li>
+        </ul>
+        <div class="tip-card">
+          <strong>Tip:</strong> Keep your GitHub Pages A records set to <strong>DNS Only (grey cloud)</strong> in Cloudflare — not proxied. Proxying can interfere with GitHub's SSL certificate for your domain.
+        </div>
+      </div>
+    </article>
+
+    <hr class="step-divider"/>
+
+    <!-- STEP 6 -->
+    <article class="step">
+      <div class="step-header">
+        <div class="step-num">06</div>
+        <div>
+          <h2 class="step-title">Point Your Domain to GitHub Pages</h2>
+          <div class="step-subtitle">DNS records + CNAME file in repo</div>
+        </div>
+      </div>
+      <div class="step-body">
+        <p>Two things to do: add DNS records in Cloudflare, and add a <strong>CNAME file</strong> in your repo.</p>
+        <p><strong>Step 1 — Add DNS records in Cloudflare:</strong></p>
+        <div class="code-block"><pre><span class="cm">Type  Name  Value               Proxy</span>
+<span class="hl">A</span>     <span class="hl2">@</span>     185.199.108.153     DNS Only
+<span class="hl">A</span>     <span class="hl2">@</span>     185.199.109.153     DNS Only
+<span class="hl">A</span>     <span class="hl2">@</span>     185.199.110.153     DNS Only
+<span class="hl">A</span>     <span class="hl2">@</span>     185.199.111.153     DNS Only
+<span class="hl">CNAME</span> <span class="hl2">www</span>   yourusername.github.io  DNS Only</pre></div>
+        <p><strong>Step 2 — Add a CNAME file in your repo:</strong></p>
+        <p>Create a file named exactly <strong>CNAME</strong> (no extension) at the root of your repo with just your domain name:</p>
+        <div class="code-block"><pre><span class="hl">vigneshiam.com</span></pre></div>
+        <p><strong>Step 3 — Set custom domain in GitHub Pages settings:</strong></p>
+        <ul class="checklist">
+          <li>Repo → Settings → Pages → Custom domain → enter your domain → Save</li>
+          <li>Wait a few minutes for GitHub to verify DNS</li>
+          <li>Once verified, tick <strong>Enforce HTTPS</strong> — GitHub provisions a free SSL certificate</li>
+        </ul>
+        <div class="tip-card">
+          <strong>Result:</strong> Your site is now live at <strong>https://yourdomain.com</strong> — hosted free, secured with HTTPS, served globally. Any push to your main branch deploys automatically.
+        </div>
+      </div>
+    </article>
+
+    <hr class="step-divider"/>
+
+    <!-- SUMMARY -->
+    <div class="stack-section">
+      <div class="stack-label">What You End Up With</div>
+      <ul class="checklist" style="margin-bottom:0;">
+        <li>A personal domain you own (e.g. yourname.com)</li>
+        <li>A fast, globally hosted website — completely free</li>
+        <li>Automatic HTTPS with a GitHub-managed SSL certificate</li>
+        <li>Git-based deployments — push to deploy, no FTP, no servers</li>
+        <li>DNS managed via Cloudflare with DDoS protection built in</li>
+        <li>Expandable — add pages, a blog, or a portfolio anytime</li>
+      </ul>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div class="feedback-card">
+      <div class="feedback-icon">💬</div>
+      <div class="feedback-content">
+        <div class="feedback-title">Know a simpler way?</div>
+        <div class="feedback-desc">
+          If you've found a shorter path, a better tool, or spotted something outdated —
+          I'd genuinely love to hear it. Reach out and I'll update the guide.
+        </div>
+        <a href="mailto:vsivasamy@vigneshiam.com" class="feedback-btn">vsivasamy@vigneshiam.com</a>
+      </div>
+    </div>
+
+    <!-- PAGE FOOTER -->
+    <div class="page-footer">
+      <a href="/">← Back to Home</a>
+      <span class="footer-copy">© 2026 vigneshiam.com</span>
+    </div>
+
+  </div>
+</body>
+</html>
